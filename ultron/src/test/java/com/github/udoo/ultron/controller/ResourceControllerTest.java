@@ -63,10 +63,24 @@ public class ResourceControllerTest {
 
         MvcResult result = mockMvc.perform(post("/resource/save.json", resourceVO).contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
+                .andExpect(status().isBadRequest())
                 .andReturn();
 
         Optional<BindException> bindException = Optional.ofNullable((BindException) result.getResolvedException());
         bindException.ifPresent((se) -> assertThat(se, is(instanceOf(BindException.class))));
     }
 
+    @Test
+    public void testInsertValidated()throws Exception {
+        ResourceVO resourceVO = new ResourceVO();
+        resourceVO.setId(1L);
+        resourceVO.setCode("code");
+        resourceVO.setName("aaa");
+        resourceVO.setPath("ppp");
+
+        mockMvc.perform(post("/resource/save.json", resourceVO).contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andReturn();
+    }
 }

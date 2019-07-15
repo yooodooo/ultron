@@ -29,6 +29,7 @@ public class ResourceController {
 
     @RequestMapping(value = "/save.json", method = {RequestMethod.POST})
     public Result insert(@Validated(value = {Insert.class}) ResourceVO resourceVO) {
+        System.out.println(resourceVO.toString());
         return Result.success();
     }
 
