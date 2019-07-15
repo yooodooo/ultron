@@ -18,6 +18,8 @@ import javax.sql.DataSource;
 /**
  * 多数据源配置
  * 用于查询
+ *
+ * @author dong.yang
  */
 @Configuration
 @MapperScan(basePackages = "com.github.udoo.ultron.dao.mapper.query", sqlSessionTemplateRef = "querySqlSessionTemplate")

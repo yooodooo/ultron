@@ -16,7 +16,11 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
-
+/**
+ * 主数据源
+ *
+ * @author dong.yang
+ */
 @Configuration
 @MapperScan(basePackages = "com.github.udoo.ultron.dao.mapper.primary", sqlSessionTemplateRef = "primarySqlSessionTemplate")
 public class PrimaryDataSource {
