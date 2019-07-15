@@ -1,4 +1,4 @@
-package com.github.udoo.ultron.config;
+package com.github.udoo.ultron.config.datasource;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
@@ -11,28 +11,32 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
 /**
- * 多数据源配置
- * 用于查询
+ * 主数据源
  *
  * @author dong.yang
  */
 @Configuration
-@MapperScan(basePackages = "com.github.udoo.ultron.dao.mapper.query", sqlSessionTemplateRef = "querySqlSessionTemplate")
-public class SecondaryDataSource {
+@MapperScan(basePackages = "com.github.udoo.ultron.dao.mapper.primary", sqlSessionTemplateRef = "primarySqlSessionTemplate")
+public class PrimaryDataSource {
 
-    @Bean(name = "queryDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.druid.two")
-    public DataSource queryDataSource() {
+
+    @Bean(name = "oneDataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.druid.one")
+    @Primary
+    public DataSource primaryDataSource() {
         return DruidDataSourceBuilder.create().build();
     }
 
-    @Bean(name = "querySqlSessionFactory")
-    public SqlSessionFactory querySqlSessionFactory(@Qualifier("queryDataSource") DataSource dataSource) throws Exception {
+
+    @Bean(name = "primarySqlSessionFactory")
+    @Primary
+    public SqlSessionFactory primarySqlSessionFactory(@Qualifier("oneDataSource") DataSource dataSource) throws Exception {
         MybatisSqlSessionFactoryBean sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
         //
@@ -43,13 +47,15 @@ public class SecondaryDataSource {
         return sqlSessionFactoryBean.getObject();
     }
 
-    @Bean(name = "queryTransactionManager")
-    public DataSourceTransactionManager queryTransactionManager(@Qualifier("queryDataSource") DataSource dataSource) {
+    @Bean(name = "primaryTransactionManager")
+    @Primary
+    public DataSourceTransactionManager primaryTransactionManager(@Qualifier("oneDataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
 
-    @Bean(name = "querySqlSessionTemplate")
-    public SqlSessionTemplate querySqlSessionTemplate(@Qualifier("querySqlSessionFactory") SqlSessionFactory sessionFactory) {
+    @Bean(name = "primarySqlSessionTemplate")
+    @Primary
+    public SqlSessionTemplate primarySqlSessionTemplate(@Qualifier("primarySqlSessionFactory") SqlSessionFactory sessionFactory) {
         return new SqlSessionTemplate(sessionFactory);
     }
 }
