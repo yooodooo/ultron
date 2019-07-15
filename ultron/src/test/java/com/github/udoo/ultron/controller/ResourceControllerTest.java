@@ -5,8 +5,8 @@ import com.github.udoo.ultron.service.system.ResourceQueryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.validation.BindException;
+
+import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
@@ -48,6 +52,21 @@ public class ResourceControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString(resourceVO.getPath())))
                 .andExpect(jsonPath("data.name", is(resourceVO.getName())));
+    }
+
+    @Test
+    public void testInsertValidatedError() throws Exception {
+        ResourceVO resourceVO = new ResourceVO();
+        resourceVO.setId(1L);
+        resourceVO.setName("aaa");
+        resourceVO.setPath("ppp");
+
+        MvcResult result = mockMvc.perform(post("/resource/save.json", resourceVO).contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andReturn();
+
+        Optional<BindException> bindException = Optional.ofNullable((BindException) result.getResolvedException());
+        bindException.ifPresent((se) -> assertThat(se, is(instanceOf(BindException.class))));
     }
 
 }

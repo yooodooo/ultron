@@ -12,6 +12,12 @@ public class Result<T> {
     private String msg;
     private T data;
 
+    public static Result success() {
+        Result result = new Result();
+        result.setSuccess(true);
+        return result;
+    }
+
     public static <T> Result success(T data) {
         Result result = new Result();
         result.setSuccess(true);
