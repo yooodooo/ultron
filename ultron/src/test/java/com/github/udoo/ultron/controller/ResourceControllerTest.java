@@ -6,11 +6,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -41,10 +43,11 @@ public class ResourceControllerTest {
         resourceVO.setPath("ppp");
         when(resourceQueryService.queryById(1L)).thenReturn(resourceVO);
 
-        mockMvc.perform(get("/resource/1.json"))
+        mockMvc.perform(get("/resource/1.json").contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("ppp")));
+                .andExpect(content().string(containsString(resourceVO.getPath())))
+                .andExpect(jsonPath("data.name", is(resourceVO.getName())));
     }
 
 }
