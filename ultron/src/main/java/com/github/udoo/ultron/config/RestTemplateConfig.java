@@ -1,5 +1,6 @@
 package com.github.udoo.ultron.config;
 
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +23,7 @@ import java.util.concurrent.TimeUnit;
  * @data 2019/7/15 11:45
  */
 @Configuration
+@Slf4j
 public class RestTemplateConfig {
 
     @Bean("restTemplate")
@@ -65,7 +67,7 @@ public class RestTemplateConfig {
             sc.init(null, new TrustManager[]{x509TrustManager}, new java.security.SecureRandom());
             return sc.getSocketFactory();
         } catch (KeyManagementException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            log.error("sslSocketFactory error: " + e.getMessage(), e);
             return null;
         }
     }

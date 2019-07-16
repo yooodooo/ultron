@@ -2,14 +2,12 @@ package com.github.udoo.ultron.controller;
 
 import com.github.udoo.ultron.common.Result;
 import com.github.udoo.ultron.common.group.Insert;
+import com.github.udoo.ultron.common.group.Update;
 import com.github.udoo.ultron.model.vo.ResourceVO;
 import com.github.udoo.ultron.service.system.ResourceQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author dong.yang
@@ -28,13 +26,13 @@ public class ResourceController {
     }
 
     @RequestMapping(value = "/save.json", method = {RequestMethod.POST})
-    public Result insert(@Validated(value = {Insert.class}) ResourceVO resourceVO) {
+    public Result insert(@Validated(value = {Insert.class}) @RequestBody ResourceVO resourceVO) {
         System.out.println(resourceVO.toString());
         return Result.success();
     }
 
     @RequestMapping(value = "/update.json", method = {RequestMethod.POST})
-    public Result update(@Validated ResourceVO resourceVO) {
+    public Result update(@Validated(value = {Update.class}) @RequestBody ResourceVO resourceVO) {
         return Result.success();
     }
 }
