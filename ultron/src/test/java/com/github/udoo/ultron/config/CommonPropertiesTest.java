@@ -25,6 +25,7 @@ public class CommonPropertiesTest {
         assertEquals("ultron", commonProperties.getName());
         assertEquals(3, commonProperties.getList().size());
         assertEquals("a", commonProperties.getMaps().get("k1"));
+        assertEquals("my name is ultron", commonProperties.getDesc());
     }
 
 

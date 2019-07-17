@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://www.cnblogs.com/yueshutong/p/10025820.html
- * http://blog.didispace.com/spring-boot-learning-21-1-3/
  * 一些通用的注入实例
  * 1、常规注入、表达式
  * 2、列表、哈希
@@ -40,4 +38,10 @@ public class CommonProperties {
      */
     @Max(value = 20)
     private Integer age;
+
+    private String desc;
+
+    private String randomValue;
+
+    private Integer randomInt;
 }
