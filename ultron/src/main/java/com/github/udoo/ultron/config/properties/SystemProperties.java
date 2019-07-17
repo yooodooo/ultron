@@ -1,4 +1,4 @@
-package com.github.udoo.ultron.config;
+package com.github.udoo.ultron.config.properties;
 
 
 import lombok.Data;
@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * 一些系统常量配置，注入的变量
+ * 通过prefix以及对象的方式进行注入
  *
  * @author dong.yang
  * @data 2019/7/14 9:32

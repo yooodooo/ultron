@@ -1,6 +1,7 @@
 package com.github.udoo.ultron.config;
 
 
+import com.github.udoo.ultron.config.properties.SystemProperties;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,9 +20,15 @@ public class SystemPropertiesTest {
     @Value("${ultron.system.other}")
     private String other;
 
+    /**
+     * 支持SpEL表达式
+     */
     @Value("#{'${ultron.system.keys}'.split(',')}")
     private String[] keys;
 
+    /**
+     * 如果没有配置项ultron.system.title,使用默认值
+     */
     @Value("${ultron.system.title:this is a title}")
     private String title;
 
