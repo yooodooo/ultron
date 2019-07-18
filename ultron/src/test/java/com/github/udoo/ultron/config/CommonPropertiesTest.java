@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * @author dong.yang
@@ -26,6 +27,8 @@ public class CommonPropertiesTest {
         assertEquals(3, commonProperties.getList().size());
         assertEquals("a", commonProperties.getMaps().get("k1"));
         assertEquals("my name is ultron", commonProperties.getDesc());
+        assertNotNull(commonProperties.getRandomValue());
+        assertNotNull(commonProperties.getRandomInt());
     }
 
 
