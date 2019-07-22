@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CacheProviderInterceptor {
 
-    @Around("")
+    @Around("execution(* com.github.udoo.ultron.service..*(..)) && @annotation(com.github.udoo.ultron.config.cache.annotation.CacheProvider)")
     public Object interceptor() {
         return null;
     }
