@@ -1,12 +1,14 @@
 package com.github.udoo.ultron.service.system.impl
 
 import com.github.udoo.ultron.common.util.CommonUtil
+import com.github.udoo.ultron.config.cache.annotation.CacheProvider
 import com.github.udoo.ultron.dao.domain.AccountDO
 import com.github.udoo.ultron.dao.mapper.primary.AccountDOMapper
 import com.github.udoo.ultron.dao.mapper.query.AccountQueryDOMapper
 import com.github.udoo.ultron.model.vo.AccountVO
 import com.github.udoo.ultron.service.system.AccountService
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class AccountServiceImpl(private val accountDOMapper: AccountDOMapper,
@@ -17,6 +19,8 @@ class AccountServiceImpl(private val accountDOMapper: AccountDOMapper,
         return CommonUtil.convert(accountDO, AccountVO::class.java)
     }
 
+    @Transactional
+    @CacheProvider(cache = AccountVO::class)
     override fun saveOrUpdate(accountVO: AccountVO) {
         val accountDO = CommonUtil.convert(accountVO, AccountDO::class.java)
         if (accountDO != null) {
