@@ -16,8 +16,8 @@ import java.util.Date;
 public class AccountVO {
     private Long id;
 
-    @NotBlank(message = "code不能为空", groups = {Insert.class})
-    @Size(max = 64, message = "长度不能超过64个字符", groups = {Insert.class})
+    @NotBlank(message = "email不能为空", groups = {Insert.class})
+    @Size(max = 64, message = "email长度不能超过64个字符", groups = {Insert.class})
     private String email;
 
     @Size(max = 32, message = "名称不能超过32个字符", groups = {Insert.class, Update.class})

@@ -4,7 +4,7 @@ import com.github.udoo.ultron.model.vo.AccountVO
 
 interface AccountService {
 
-    fun selectById(id: Long?): AccountVO
+    fun selectById(id: Int?): AccountVO
 
     fun saveOrUpdate(accountVO: AccountVO)
 }
