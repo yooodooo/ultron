@@ -6,7 +6,7 @@ import com.github.udoo.dto.AccountDTO;
  * @author dong.yang
  * @data 2019/8/13 16:18
  */
-public interface AccountService {
+public interface AccountApi {
 
     AccountDTO getAccount(Integer id);
 }
