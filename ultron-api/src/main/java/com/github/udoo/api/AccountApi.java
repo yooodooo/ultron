@@ -1,6 +1,6 @@
 package com.github.udoo.api;
 
-import com.github.udoo.dto.AccountDTO;
+import com.github.udoo.bo.AccountBO;
 
 /**
  * @author dong.yang
@@ -8,5 +8,11 @@ import com.github.udoo.dto.AccountDTO;
  */
 public interface AccountApi {
 
-    AccountDTO getAccount(Integer id);
+    /**
+     * 根据主键获取账户信息
+     *
+     * @param id
+     * @return
+     */
+    AccountBO getAccount(Integer id);
 }

@@ -1,16 +1,15 @@
-package com.github.udoo.dto;
+package com.github.udoo.bo;
 
 import lombok.Data;
-import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
 /**
  * @author dong.yang
- * @data 2019/8/13 16:19
+ * @data 2019/8/13 18:06
  */
 @Data
-public class AccountDTO {
+public class AccountBO implements Serializable {
     private String code;
     private String name;
 }
