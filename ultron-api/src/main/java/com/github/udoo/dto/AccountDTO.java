@@ -1,9 +1,6 @@
 package com.github.udoo.dto;
 
 import lombok.Data;
-import lombok.experimental.Accessors;
-
-import java.io.Serializable;
 
 /**
  * @author dong.yang
