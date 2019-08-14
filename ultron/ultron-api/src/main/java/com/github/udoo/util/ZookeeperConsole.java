@@ -61,7 +61,7 @@ public class ZookeeperConsole {
                 return curatorClient(sc);
             }
         } catch (InterruptedException e) {
-            println("连接[" + zkAddress + "]失败: " + e.getMessage());
+            System.err.println("连接[" + zkAddress + "]失败: " + e.getMessage());
         }
         return null;
     }
@@ -84,7 +84,7 @@ public class ZookeeperConsole {
                 showPathChildrenInfo(curatorFramework, scanner, path);
             }
         } catch (Exception e) {
-            println("出错了： " + e.getMessage());
+            System.err.println("出错了： " + e.getMessage());
         }
     }
 
@@ -121,7 +121,7 @@ public class ZookeeperConsole {
                     println("路径[" + selectedPath + "]数据为: " + selectedPathData == null ? "" : new String(selectedPathData));
                 }
             } catch (Exception e) {
-                println("查看数据[" + line + "]失败: " + e.getMessage());
+                System.err.println("查看数据[" + line + "]失败: " + e.getMessage());
                 showPathChildrenInfo(curatorFramework, scanner, path);
             }
         }
