@@ -2,6 +2,7 @@ package com.github.udoo.ultron.service.api;
 
 import com.github.udoo.api.AccountApi;
 import com.github.udoo.bo.AccountBO;
+import com.github.udoo.dto.AccountDTO;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,4 +21,12 @@ public class AccountApiImpl implements AccountApi {
                 .build();
     }
 
+    @Override
+    public AccountBO createAccount(AccountDTO accountDTO) {
+        return AccountBO.builder()
+                .id(1)
+                .code(accountDTO.getCode())
+                .name(accountDTO.getName())
+                .build();
+    }
 }

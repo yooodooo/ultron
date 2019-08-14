@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Data
 @Builder
 public class AccountBO implements Serializable {
+    private Integer id;
     private String code;
     private String name;
 }
