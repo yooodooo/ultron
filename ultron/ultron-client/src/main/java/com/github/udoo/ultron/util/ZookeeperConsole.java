@@ -1,4 +1,4 @@
-package com.github.udoo.util;
+package com.github.udoo.ultron.util;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
