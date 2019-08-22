@@ -8,30 +8,26 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author dong.yang
- * @data 2019/8/13 16:51
+ * @data 2019/8/22 9:58
  */
 @Service
-@org.apache.dubbo.config.annotation.Service(validation = "true", version = "${dubbo.provider.AccountApi.version}",
+@org.apache.dubbo.config.annotation.Service(validation = "true", version = "${dubbo.provider.AccountApi.version.v2}",
         timeout = 1000, methods = {
         @Method(name = "getAccount", timeout = 200)
 })
-public class AccountApiImpl implements AccountApi {
+public class AccountApiVersionImpl implements AccountApi {
 
     @Override
     public AccountBO getAccount(Integer id) {
         return AccountBO.builder()
                 .id(id)
-                .code("je.from version 1.0.0")
+                .code("je.from version 2.0.0")
                 .name("la")
                 .build();
     }
 
     @Override
     public AccountBO createAccount(AccountDTO accountDTO) {
-        return AccountBO.builder()
-                .id(1)
-                .code(accountDTO.getCode())
-                .name(accountDTO.getName())
-                .build();
+        return null;
     }
 }

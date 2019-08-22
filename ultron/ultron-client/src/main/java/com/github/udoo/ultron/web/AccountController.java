@@ -18,9 +18,17 @@ public class AccountController {
     @Reference(validation = "true", version = "${dubbo.provider.AccountApi.version}")
     private AccountApi accountApi;
 
+    @Reference(validation = "true", version = "2.0.0")
+    private AccountApi accountVersionApi;
+
     @GetMapping(value = "/{id}.json")
-    public Object get(@PathVariable("id") Integer id) {
+    public Object v1(@PathVariable("id") Integer id) {
         return accountApi.getAccount(id);
+    }
+
+    @GetMapping(value = "/v2/{id}.json")
+    public Object v2(@PathVariable("id") Integer id) {
+        return accountVersionApi.getAccount(id);
     }
 
 }
