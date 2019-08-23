@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @data 2019/8/13 16:51
  */
 @Service
-@org.apache.dubbo.config.annotation.Service(validation = "true", version = "${dubbo.provider.AccountApi.version}",
+@org.apache.dubbo.config.annotation.Service(validation = "true", group = "group.account", version = "${dubbo.provider.AccountApi.version}",
         timeout = 1000, methods = {
         @Method(name = "getAccount", timeout = 200)
 })

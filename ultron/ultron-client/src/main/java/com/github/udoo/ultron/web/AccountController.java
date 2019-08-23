@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/account")
 public class AccountController {
 
-    @Reference(validation = "true", version = "${dubbo.provider.AccountApi.version}")
+    @Reference(validation = "true", version = "${dubbo.provider.AccountApi.version}", group = "group.account")
     private AccountApi accountApi;
 
-    @Reference(validation = "true", version = "2.0.0")
+    @Reference(validation = "true", version = "2.0.0", group = "group.account")
     private AccountApi accountVersionApi;
 
     @GetMapping(value = "/{id}.json")
