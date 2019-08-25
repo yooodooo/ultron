@@ -9,17 +9,35 @@
 使用过SpringBoot的人都知道默认配置文件application.properties，基于键值对，位于resource跟目录下，名称也不能改，当然也可以用application.yml替代，两者
 除了语法不同并没有本质的区别。
 
-application.properties
-name=config-sample
-count=102
+    application.properties
+    name=config-sample
+    count=102
 
 
 在代码中使用
 
+    @Value("${name}")
+    private String name;
+    
+    @Value("${count}")
+    private Integer count;
 
 支持SpringEl表达式
 
-当然在SpringBoot中推荐更优雅的方式，通过定义
+    
+
+
+当然在SpringBoot中推荐更优雅的方式，通过定义@ConfigurationProperties来
+
+    @Data
+    @Configuration
+    @ConfigurationProperties
+    public class CommonProperties {
+    
+        private String name;
+        
+        private Integer count;
+    }
 
 2、复杂对象
 list
