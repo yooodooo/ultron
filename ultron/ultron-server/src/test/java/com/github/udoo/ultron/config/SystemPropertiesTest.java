@@ -20,11 +20,18 @@ public class SystemPropertiesTest {
     @Value("${ultron.system.other}")
     private String other;
 
+//    @Value("${booleanVal}")
+//    private boolean booleanVal;
+
     /**
      * 支持SpEL表达式
      */
     @Value("#{'${ultron.system.keys}'.split(',')}")
     private String[] keys;
+
+    //静态方法调用
+    @Value("#{T(Integer).parseInt('${countVal}') > 10}")
+    private boolean booleanVal;
 
     /**
      * 如果没有配置项ultron.system.title,使用默认值
@@ -32,9 +39,15 @@ public class SystemPropertiesTest {
     @Value("${ultron.system.title:this is a title}")
     private String title;
 
+    @Test
+    public void testPropertiesSpringEl() {
+//        Assert.assertEquals(2, keys.length);
+        Assert.assertTrue(booleanVal);
+    }
 
     @Test
     public void testSystemProperties() {
+//        Assert.assertTrue(booleanVal);
         Assert.assertEquals(10, systemProperties.getCount());
         Assert.assertEquals("hello spring boot", systemProperties.getName());
     }
