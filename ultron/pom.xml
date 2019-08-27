@@ -18,6 +18,7 @@
         <module>ultron-api</module>
         <module>ultron-server</module>
         <module>ultron-client</module>
+        <module>ultron-doc</module>
     </modules>
 
     <properties>
