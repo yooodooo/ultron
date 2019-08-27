@@ -1,6 +1,6 @@
 package com.github.udoo.ultron.doc.test.common;
 
-import com.github.udoo.ultron.doc.common.SystemConfig;
+import com.github.udoo.ultron.doc.common.config.ConfigLocation;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +13,13 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SystemConfigTest {
+public class ConfigLocationTest {
 
     @Autowired
-    private SystemConfig systemConfig;
+    private ConfigLocation configLocation;
 
     @Test
     public void locationTest() {
-        System.out.println(systemConfig);
+        System.out.println(configLocation);
     }
 }
