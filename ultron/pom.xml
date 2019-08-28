@@ -25,6 +25,7 @@
         <java.version>1.8</java.version>
         <kotlin.version>1.2.71</kotlin.version>
         <dubbo.version>2.7.1</dubbo.version>
+        <dubbo-sentinel.version>1.6.0</dubbo-sentinel.version>
         <curator.version>2.13.0</curator.version>
         <hibernate-validator.version>6.0.16.Final</hibernate-validator.version>
     </properties>
@@ -72,6 +73,17 @@
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-spring-boot-starter</artifactId>
                 <version>${dubbo.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-apache-dubbo-adapter</artifactId>
+                <version>${dubbo-sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-transport-simple-http</artifactId>
+                <version>${dubbo-sentinel.version}</version>
             </dependency>
 
             <dependency>
