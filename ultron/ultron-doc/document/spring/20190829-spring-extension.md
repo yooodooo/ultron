@@ -1,0 +1,13 @@
+
+
+使用场景：在bean初始化之前接入BeanDefinition
+
+- PropertyPlaceholderConfigurer 
+
+将容器中所有BeanDefinition中${...}用给定的属性替换,同样如果配置文件加密、远程获取替换都可以在此扩展
+
+- MapperScannerConfigurer
+
+在Spring集成mybatis时并不会配置每个mapper，所以容器中并没有这些BeanDefinition。而MapperScannerConfigurer
+的做法是扫描basePackage下的类生成相应BeanDefinition，并通过BeanDefinitionRegistry进行注册
+
