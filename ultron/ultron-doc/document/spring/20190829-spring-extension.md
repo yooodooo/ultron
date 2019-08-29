@@ -28,5 +28,6 @@ public interface BeanFactoryPostProcessor {
 
 BeanPostProcessor
 
+AOP自动代理
 
 
