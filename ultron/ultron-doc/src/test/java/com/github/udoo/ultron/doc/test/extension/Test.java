@@ -1,5 +1,6 @@
 package com.github.udoo.ultron.doc.test.extension;
 
+import com.github.udoo.ultron.doc.test.extension.api.RegistService;
 import com.github.udoo.ultron.doc.test.extension.api.SampleService;
 import com.github.udoo.ultron.doc.test.extension.api.TestService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -21,5 +22,8 @@ public class Test {
         SampleService sampleService = applicationContext.getBean("sampleService", SampleService.class);
         sampleService.hello("bbb");
         sampleService.print();
+
+        RegistService registService = applicationContext.getBean("registService", RegistService.class);
+        registService.hello();
     }
 }

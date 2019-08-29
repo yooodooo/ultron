@@ -1,9 +1,13 @@
 package com.github.udoo.ultron.doc.test.extension;
 
+import com.github.udoo.ultron.doc.test.extension.api.impl.RegistServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
+import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,12 +21,20 @@ import org.springframework.stereotype.Component;
  * @date 2019/8/29 11:05
  */
 @Component
-public class CustomBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
+public class CustomBeanFactoryPostProcessor implements BeanFactoryPostProcessor, BeanDefinitionRegistryPostProcessor {
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        System.out.println("BeanFactoryPostProcessor....");
+        System.out.println("CustomBeanFactoryPostProcessor.postProcessBeanFactory.....");
         BeanDefinition beanDefinition = beanFactory.getBeanDefinition("sampleService");
         beanDefinition.getPropertyValues().add("injectValue", "test inject val");
+    }
+
+    @Override
+    public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
+        System.out.println("CustomBeanFactoryPostProcessor.postProcessBeanDefinitionRegistry.....");
+        GenericBeanDefinition defininition = new GenericBeanDefinition();
+        defininition.setBeanClass(RegistServiceImpl.class);
+        registry.registerBeanDefinition("registService", defininition);
     }
 }
