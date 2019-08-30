@@ -16,11 +16,14 @@ public class CustomBeanPostProcessor implements BeanPostProcessor, Ordered {
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println();
+        System.out.println("[BeanPostProcessor.postProcessBeforeInitialization]" + beanName + "...");
         return bean;
     }
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println("[BeanPostProcessor.postProcessAfterInitialization]" + beanName + "...");
         String packageName = bean.getClass().getPackage().getName();
         if (packageName.startsWith("com.github.udoo")) {
             return Proxy.newProxyInstance(getClass().getClassLoader(), bean.getClass().getInterfaces(), new CustomBeanPostProcessorProxy(bean));

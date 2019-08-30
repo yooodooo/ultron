@@ -1,8 +1,8 @@
 package com.github.udoo.ultron.doc.test.extension.api.impl;
 
-import com.github.udoo.ultron.doc.test.extension.common.Log;
 import com.github.udoo.ultron.doc.test.extension.api.RegisterService;
 import com.github.udoo.ultron.doc.test.extension.api.SampleService;
+import com.github.udoo.ultron.doc.test.extension.common.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +18,6 @@ public class SampleServiceImpl implements SampleService {
 
     private String injectValue;
 
-    public String getInjectValue() {
-        return injectValue;
-    }
-
-    public void setInjectValue(String injectValue) {
-        this.injectValue = injectValue;
-    }
-
     @Override
     @Log
     public void hello(String msg) {
@@ -36,5 +28,13 @@ public class SampleServiceImpl implements SampleService {
     @Override
     public void print() {
         System.out.println(injectValue);
+    }
+
+    public String getInjectValue() {
+        return injectValue;
+    }
+
+    public void setInjectValue(String injectValue) {
+        this.injectValue = injectValue;
     }
 }

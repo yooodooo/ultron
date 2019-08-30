@@ -1,4 +1,4 @@
-
+[./pic/bean.jpg]
 
 BeanFactoryPostProcessor
 
@@ -67,6 +67,18 @@ public class CustomBeanFactoryPostProcessor implements BeanFactoryPostProcessor,
         registry.registerBeanDefinition("registerService", genericBeanDefinition);
     }
 }
+```
+
+Aware
+
+在Spring中使用Bean一般不需要关注容器相关的数据，但是如果确实有需要也可以通过Aware来获取响应的配置。下面展示了一些常见的Aware接口及其获取到容器的数据
+```
+BeanNameAware	获得当前Bean的名称
+BeanFactoryAware	获得beanfactory
+ApplicationContextAware	获得ApplicationContext
+MessageSourceAware	获得MessageSource
+ApplicationEventPublisherAware	获得ApplicationEventPublisher，可以发布事件
+ResourceLoaderAware	获得ResourceLoader
 ```
 
 BeanPostProcessor

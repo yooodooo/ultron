@@ -7,4 +7,6 @@ package com.github.udoo.ultron.doc.test.extension.api;
 public interface RegisterService {
 
     void hello();
+
+    void helloAgain();
 }

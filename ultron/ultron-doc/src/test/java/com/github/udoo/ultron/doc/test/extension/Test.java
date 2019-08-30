@@ -1,7 +1,6 @@
 package com.github.udoo.ultron.doc.test.extension;
 
 import com.github.udoo.ultron.doc.test.extension.api.SampleService;
-import com.github.udoo.ultron.doc.test.extension.api.TestService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -15,9 +14,7 @@ public class Test {
         applicationContext.scan("com.github.udoo.ultron.doc.test");
         applicationContext.refresh();
 
-        TestService testService = applicationContext.getBean("testService", TestService.class);
-        testService.hello("aa");
-
+        System.out.println();
         SampleService sampleService = applicationContext.getBean("sampleService", SampleService.class);
         sampleService.hello("bbb");
         sampleService.print();

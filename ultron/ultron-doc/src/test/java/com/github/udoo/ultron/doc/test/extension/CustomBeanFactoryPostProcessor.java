@@ -25,6 +25,7 @@ public class CustomBeanFactoryPostProcessor implements BeanFactoryPostProcessor,
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+        System.out.println("BeanFactoryPostProcessor.postProcessBeanFactory...");
         //获取到sampleService并对其属性injectValue注入相应的值
         BeanDefinition beanDefinition = beanFactory.getBeanDefinition("sampleService");
         beanDefinition.getPropertyValues()
@@ -33,11 +34,13 @@ public class CustomBeanFactoryPostProcessor implements BeanFactoryPostProcessor,
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
+        System.out.println("BeanDefinitionRegistryPostProcessor.postProcessBeanDefinitionRegistry...");
         //手动注入服务，此时RegisterServiceImpl中并没有使用@Service,注册后可以注入使用
         //@Autowired
         //private RegisterService registerService;
         GenericBeanDefinition genericBeanDefinition = new GenericBeanDefinition();
         genericBeanDefinition.setBeanClass(RegisterServiceImpl.class);
+        genericBeanDefinition.setInitMethodName("helloAgain");
         registry.registerBeanDefinition("registerService", genericBeanDefinition);
     }
 }

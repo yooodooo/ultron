@@ -23,7 +23,7 @@ public class CustomBeanPostProcessorProxy implements InvocationHandler {
         long begin = System.currentTimeMillis();
         Object result = method.invoke(target, args);
         if (logAnnotation) {
-            System.out.println("target: " + target.getClass().getName() + "." + method.getName() + " cost: " + (System.currentTimeMillis() - begin));
+            System.out.println("target: " + target.getClass().getName() + "." + method.getName() + " cost: " + (System.currentTimeMillis() - begin) + " ms");
         }
         return result;
     }
