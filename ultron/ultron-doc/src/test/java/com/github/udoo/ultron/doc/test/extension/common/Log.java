@@ -1,4 +1,4 @@
-package com.github.udoo.ultron.doc.test.extension;
+package com.github.udoo.ultron.doc.test.extension.common;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

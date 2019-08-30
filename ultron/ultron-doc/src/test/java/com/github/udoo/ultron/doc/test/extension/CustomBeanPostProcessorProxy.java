@@ -1,5 +1,7 @@
 package com.github.udoo.ultron.doc.test.extension;
 
+import com.github.udoo.ultron.doc.test.extension.common.Log;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
@@ -18,12 +20,10 @@ public class CustomBeanPostProcessorProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         boolean logAnnotation = shouldProxy(method);
-        if (logAnnotation) {
-            System.out.println("proxy begin. target: " + target.getClass().getName() + "." + method.getName());
-        }
+        long begin = System.currentTimeMillis();
         Object result = method.invoke(target, args);
         if (logAnnotation) {
-            System.out.println("proxy end. target: " + target.getClass().getName() + "." + method.getName());
+            System.out.println("target: " + target.getClass().getName() + "." + method.getName() + " cost: " + (System.currentTimeMillis() - begin));
         }
         return result;
     }
